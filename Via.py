@@ -13,7 +13,7 @@ import json
 engine=pyttsx3.init()
 voices=engine.getProperty('voices')
 engine.setProperty('voice','voices[1].id')
-engine.setProperty('rate', 100)
+engine.setProperty('rate', 160)
 def speak(text):
     engine.say(text)
     engine.runAndWait()
@@ -22,13 +22,13 @@ def speak(text):
 def wishMe():
     hour=datetime.datetime.now().hour
     if hour>=0 and hour<12:
-        speak("Good Morning")
+        speak("namaste,   Good Morning")
         print("Hello,Good Morning")
     elif hour>=12 and hour<16:
-        speak("Good Afternoon")
+        speak("namaste,   Good Afternoon")
         print("Hello,  Good Afternoon")
     else:
-        speak("Good Evening")
+        speak("namaste,  Good Evening")
         print("Hello, Good Evening")
 
 
@@ -40,22 +40,22 @@ def takeCommand():
         audio=r.listen(source)
 
         try:
-            statement=r.recognize_google(audio,language='eng')
-            print("You said:", statement,"\n")
+            statement=r.recognize_google(audio,language='en-in')
+            print(f"user said:{statement}\n")
 
         except Exception as e:
             speak("Pardon me, please say that again")
             return "None"
         return statement
     
-print("Loading your AI personal assistant")
-speak("Hi,  I,  am,  your,  personal,  assistant.")
+print("Loading your AI personal assistant uttaraa")
+speak("hi,  I am uttaraa,  a personal assistant")
 wishMe()
 if __name__=='__main__':
 
 
     while True:
-        speak("Tell,  me,  how,  can,  I,  help,  you,  now?")
+        speak("Tell me how can I help you now?")
         statement = takeCommand().lower()
         if statement==0:
             continue
@@ -89,7 +89,7 @@ if __name__=='__main__':
                     time.sleep(5)            
         elif 'time' in statement:
                     strTime=datetime.datetime.now().strftime("%H:%M:%S")
-                    speak("the time is", strTime)
+                    speak(f"the time is {strTime}")
 
         elif 'news' in statement:
                     news = webbrowser.open_new_tab("https://timesofindia.indiatimes.com/home/headlines”")
@@ -122,7 +122,7 @@ if __name__=='__main__':
 
         elif "who made you" in statement or "who created you" in statement or "who discovered you" in statement:
                     speak("I was built by legends")
-                    print("I was built by the Tripathis")
+                    print("I was built by tripathis")
                 
                     
         elif "weather" in statement:
@@ -157,22 +157,25 @@ if __name__=='__main__':
                     speak("Ok , your pc will log off in 10 sec make sure you exit from all applications")
                     subprocess.call(["shutdown", "/l"])
 
+                           
+
         elif "what" in statement or "how" in statement or "when" in statement or "where" in statement or "who" in statement:
                     speak("showing search results by google" or "showing web results")
-                    url = ("https://www.google.com.tr/search?q=", statement)  
-                    webbrowser.open(url)
+                    url = f"https://www.google.com.tr/search?q={statement}"  
+                    webbrowser.open(url)            
         
-    
+   
 
         elif "update yourself"  in statement or "self update" in statement or "update" in statement:
                     speak (" restarting for update")
                     print("....")
                     time.sleep(7)
                     import pers_AI
-
-        elif "why" and "you" in statement:
-            speak("my name is Iva , which ,means, Ishanya - Ved , personal assisant")  
+                    
+        
+            
+            
                     
                         
                                 
-        time.sleep(3)
+        time.sleep(3)                
